@@ -1,9 +1,12 @@
-//import the route link thingy
 
-//function 
-const goBack = () => {
-    navigate(-1)
-}
 
-//button
-<button onClick={goBack}>Back</button>
+import { useHistory } from "react-router-dom";
+
+export const Item = () => {
+    let history = useHistory();
+    return (
+        <>
+          <button onClick={() => history.goBack()}>Back</button>
+        </>
+    );
+};
