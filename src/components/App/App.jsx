@@ -7,6 +7,8 @@ import PizzaList from '../PizzaList/PizzaList';
 import './App.css';
 import {AppBar, Button, Toolbar} from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Admin from "../Admin/Admin.jsx";
+import Checkout from "../Checkout/Checkout";
 
 function App() {
 
@@ -28,9 +30,29 @@ axios.get('/api/pizza').then(response => {
     <AppBar position="fixed">
     <Toolbar> Prime Pizza Parlor<Button color='success' variant='contained' style={{marginLeft:'80%'}} ><ShoppingCartIcon />Checkout</Button></Toolbar>
     </AppBar>
-  <div> 
-      <PizzaList />
-    </div>
+  <Router>
+      <div className="App">
+        {/* <header className="App-header">
+          <h1 className="App-title">Prime Pizza</h1>
+        </header> */}
+
+        {/* Route for PizzaList component/ home page */}
+        <Route exact path='/'>
+        <PizzaList />
+        </Route>
+        {/* <p>Pizza is great.</p> */}
+
+        {/* Route for component 'Checkout' */}
+        <Route exact path="/order">
+          <Checkout />
+        </Route>
+
+        {/* Route for administrative page */}
+        <Route path="/admin">
+          <Admin />
+        </Route>
+      </div>
+    </Router>
     </>
   );
 }
