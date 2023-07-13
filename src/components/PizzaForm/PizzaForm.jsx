@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 
-function CustomerInfo() {
+function PizzaForm() {
 
     let [customerToAdd, setCustomerToAdd] = useState({ name: '', address: '', city: '', zip: '' })
     let [pickUp, setPickUp] = useState(false)
@@ -94,4 +94,4 @@ function CustomerInfo() {
 
 }
 
-export default CustomerInfo
+export default PizzaForm
