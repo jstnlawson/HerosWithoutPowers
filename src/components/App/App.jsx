@@ -1,19 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { HashRouter as Router, Route, Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useDispatch } from 'react-redux';
+import { HashRouter as Router, Route, Link, useHistory} from 'react-router-dom/cjs/react-router-dom.min';
 import PizzaList from '../PizzaList/PizzaList';
 import './App.css';
-import {AppBar, Button, Toolbar} from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Admin from "../Admin/Admin.jsx";
 import Checkout from "../Checkout/Checkout";
-
+import PizzaForm from '../PizzaForm/PizzaForm'
+import Bar from '../Toolbar/Bar'
 function App() {
 
   const dispatch = useDispatch()
-
+  const history = useHistory()
+  console.log(history)
 axios.get('/api/pizza').then(response => {
   dispatch({
     type:'SET_PIZZA',
@@ -24,13 +23,15 @@ axios.get('/api/pizza').then(response => {
 })
 
 
+function nextPage() {
+  history.push("/order")
+}
+
 
   return (
     <>
-    <AppBar position="fixed">
-    <Toolbar> Prime Pizza Parlor<Button color='success' variant='contained' style={{marginLeft:'80%'}} ><ShoppingCartIcon />Checkout</Button></Toolbar>
-    </AppBar>
-  <Router>
+     <Router>
+      <Bar nextPage = {nextPage}/>
       <div className="App">
         {/* <header className="App-header">
           <h1 className="App-title">Prime Pizza</h1>
@@ -43,6 +44,7 @@ axios.get('/api/pizza').then(response => {
         {/* <p>Pizza is great.</p> */}
 
         {/* Route for component 'Checkout' */}
+        
         <Route exact path="/order">
           <Checkout />
         </Route>
@@ -51,7 +53,15 @@ axios.get('/api/pizza').then(response => {
         <Route path="/admin">
           <Admin />
         </Route>
+
+        <Route path="/pizzaform">
+          <PizzaForm />
+        </Route>
+        <Link to="/order">
+        hello
+        </Link>
       </div>
+      
     </Router>
     </>
   );
