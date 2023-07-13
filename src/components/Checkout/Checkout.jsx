@@ -28,6 +28,7 @@ function Checkout() {
   const cart = useSelector((store) => store.cart);
 
   return (
+
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -38,14 +39,13 @@ function Checkout() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cart.map((pizza) => (
-              <TableRow>
-                key={pizza.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            {cart.map(pizza => (
+              <TableRow key={pizza.pizzaItem.id}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                  {pizza.name}
+                  {pizza.pizzaItem.name}
                 </TableCell>
-                <TableCell align="right">${pizza.price}</TableCell>
+                <TableCell align="right">${pizza.pizzaItem.price}</TableCell>
               </TableRow>
             ))}
           </TableBody>

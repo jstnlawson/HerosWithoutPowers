@@ -11,8 +11,10 @@ import Bar from '../Toolbar/Bar'
 function App() {
 
   const dispatch = useDispatch()
-  const history = useHistory()
-  console.log(history)
+
+
+
+
 axios.get('/api/pizza').then(response => {
   dispatch({
     type:'SET_PIZZA',
@@ -22,7 +24,7 @@ axios.get('/api/pizza').then(response => {
   console.log("error in get", err)
 })
 
-
+const history = useHistory()
 function nextPage() {
   history.push("/order")
 }
