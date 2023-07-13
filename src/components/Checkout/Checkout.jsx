@@ -29,7 +29,6 @@ function Checkout() {
 
   return (
     <div>
-      // Table rendering each pizza in cart
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
