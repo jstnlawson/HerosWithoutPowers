@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -7,12 +8,13 @@ import {
   Route,
   Link,
 } from "react-router-dom/cjs/react-router-dom.min";
+
+// Component imports
 import PizzaList from "../PizzaList/PizzaList";
-import "./App.css";
+import Admin from "../Admin/Admin.jsx";
 
 // Import Components
 import Checkout from "../Checkout/Checkout";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -32,21 +34,23 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <h1 className="App-title">Prime Pizza</h1>
-        </header>
+        </header> */}
+
+        {/* Route for PizzaList component/ home page */}
+        <Route exact path='/'>
         <PizzaList />
-        <p>Pizza is great.</p>
+        </Route>
+        {/* <p>Pizza is great.</p> */}
 
         {/* Route for component 'Checkout' */}
-        <Link to="/api/order">Go to Checkout</Link>
-        <Route exact path="/api/order">
+        <Route exact path="/order">
           <Checkout />
         </Route>
-        
+
         {/* Route for administrative page */}
-        <Link to="/admin">Go to Admin</Link>
-        <Route exact path="/admin">
+        <Route path="/admin">
           <Admin />
         </Route>
       </div>
