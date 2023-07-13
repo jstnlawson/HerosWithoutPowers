@@ -20,9 +20,24 @@ const pizzaList = (state = [], action) => {
 
 }
 
+const cart = (state = [], action) => {
+    if (action.type === 'ADD_TO_CART') {
+        return [...state, action.payload]
+    }
+    if (action.type === 'REMOVE_FROM_CART') {
+        return  state.filter(pizza => {return Number(pizza.pizzaItem.id) !== Number(action.payload)});
+    }
+    else if (action.type === 'EMPTY') {
+        return []
+    }
+
+    return state
+}
+
 const storeInstance = createStore(
     combineReducers({
-        pizzaList
+        pizzaList,
+        cart
     }),
     applyMiddleware(logger)
 )

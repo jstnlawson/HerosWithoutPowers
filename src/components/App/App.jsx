@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import PizzaList from '../PizzaList/PizzaList';
 import './App.css';
-
-
+import {AppBar, Button, Toolbar} from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function App() {
+
   const dispatch = useDispatch()
 
 axios.get('/api/pizza').then(response => {
@@ -23,13 +24,14 @@ axios.get('/api/pizza').then(response => {
 
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza</h1>
-      </header>
+    <>
+    <AppBar position="fixed">
+    <Toolbar> Prime Pizza Parlor<Button color='success' variant='contained' style={{marginLeft:'80%'}} ><ShoppingCartIcon />Checkout</Button></Toolbar>
+    </AppBar>
+  <div> 
       <PizzaList />
-      <p>Pizza is great.</p>
     </div>
+    </>
   );
 }
 
