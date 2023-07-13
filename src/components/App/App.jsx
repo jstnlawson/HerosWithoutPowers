@@ -1,38 +1,36 @@
-import React from "react";
-import "./App.css";
-import axios from "axios";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {
-  HashRouter as Router,
-  Route,
-  Link,
-} from "react-router-dom/cjs/react-router-dom.min";
-
-// Component imports
-import PizzaList from "../PizzaList/PizzaList";
+import React from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { HashRouter as Router, Route, Link } from 'react-router-dom/cjs/react-router-dom.min';
+import PizzaList from '../PizzaList/PizzaList';
+import './App.css';
+import {AppBar, Button, Toolbar} from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Admin from "../Admin/Admin.jsx";
-
-// Import Components
 import Checkout from "../Checkout/Checkout";
 
 function App() {
-  const dispatch = useDispatch();
 
-  axios
-    .get("/api/pizza")
-    .then((response) => {
-      dispatch({
-        type: "SET_PIZZA",
-        payload: response.data,
-      });
-    })
-    .catch((err) => {
-      console.log("error in get", err);
-    });
+  const dispatch = useDispatch()
+
+axios.get('/api/pizza').then(response => {
+  dispatch({
+    type:'SET_PIZZA',
+    payload:response.data
+  })
+}).catch(err => {
+  console.log("error in get", err)
+})
+
+
 
   return (
-    <Router>
+    <>
+    <AppBar position="fixed">
+    <Toolbar> Prime Pizza Parlor<Button color='success' variant='contained' style={{marginLeft:'80%'}} ><ShoppingCartIcon />Checkout</Button></Toolbar>
+    </AppBar>
+  <Router>
       <div className="App">
         {/* <header className="App-header">
           <h1 className="App-title">Prime Pizza</h1>
@@ -55,6 +53,7 @@ function App() {
         </Route>
       </div>
     </Router>
+    </>
   );
 }
 
