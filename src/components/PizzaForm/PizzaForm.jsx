@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-
+import { Input } from '@mui/material';
 function PizzaForm() {
 
     let [customerToAdd, setCustomerToAdd] = useState({ name: '', address: '', city: '', zip: '' })
@@ -63,33 +63,41 @@ function PizzaForm() {
     };
 
     return (
-        <>
-            <form onSubmit={(event) => addCustomer(event)}>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    onChange={handleNameChange} />
-                <br></br>
-                <input
-                    type="text"
-                    placeholder="StreetAddress"
-                    onChange={handleAddressChange} />
-                <br></br>
-                <input
-                    type="text"
-                    placeholder="City"
-                    onChange={handleCityChange} />
-                <br></br>
-                <input
-                    type="text"
-                    placeholder="Zip"
-                    onChange={handleZipChange} />
-                <br />
-                <input type="checkbox" onChange={handlePickUp}>Pickup</input>
-                <input type="checkbox" onChange={handleDelivery}>Delivery</input>
-                <button type="submit">Next</button>
-            </form>
-        </>
+         <div>
+            <form onSubmit={(event) => addCustomer(event)} style={{ marginTop: '100px' }}>
+            <h1>Enter your Information</h1>
+            <input
+                type="text"
+                placeholder="Name"
+                onChange={handleNameChange}
+                style={{marginTop:'10px'}} />
+            <br></br>
+            <input
+                type="text"
+                placeholder="Street Address"
+                onChange={handleAddressChange}
+                style={{marginTop:'10px'}} />
+            <br></br>
+            <input
+                type="text"
+                placeholder="City"
+                onChange={handleCityChange} 
+                style={{marginTop:'10px'}}/>
+            <br></br>
+            <input
+                type="text"
+                placeholder="Zip"
+                onChange={handleZipChange} 
+                style={{marginTop:'10px'}}/>
+            <br />
+            <p>Pick up?</p>
+            <input type="checkbox" onChange={handlePickUp} />
+            <p>Delivery?</p>
+            <input type="checkbox" onChange={handleDelivery} />
+            
+        </form>
+       </div>
+
     )
 
 }

@@ -3,7 +3,6 @@ import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 export default function PizzaList() {
-    const cart = useSelector(store => store.cart)
     const pizzas = useSelector(store => store.pizzaList)
 
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { HashRouter as Router, Route, Link, useHistory} from 'react-router-dom/cjs/react-router-dom.min';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import PizzaList from '../PizzaList/PizzaList';
 import './App.css';
 import Admin from "../Admin/Admin.jsx";
@@ -24,16 +24,9 @@ axios.get('/api/pizza').then(response => {
   console.log("error in get", err)
 })
 
-const history = useHistory()
-function nextPage() {
-  history.push("/order")
-}
-
-
   return (
-    <>
      <Router>
-      <Bar nextPage = {nextPage}/>
+      <Bar/>
       <div className="App">
         {/* <header className="App-header">
           <h1 className="App-title">Prime Pizza</h1>
@@ -59,13 +52,9 @@ function nextPage() {
         <Route path="/pizzaform">
           <PizzaForm />
         </Route>
-        <Link to="/order">
-        hello
-        </Link>
       </div>
       
     </Router>
-    </>
   );
 }
 
